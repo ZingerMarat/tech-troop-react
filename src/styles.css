@@ -2,3 +2,18 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.freezing {
+  height: 5rem;
+  background-color: aqua;
+}
+
+.fair {
+  height: 5rem;
+  background-color: orange;
+}
+
+.hell-scape {
+  height: 5rem;
+  background-color: red;
+}
