@@ -30,6 +30,17 @@ function App() {
     setSearchCategory(category)
   }
 
+  useEffect(() => {
+    const storedNotes = localStorage.getItem("notes")
+    if (storedNotes) {
+      setNotes(JSON.parse(storedNotes).map((note) => ({ ...note, date: new Date(note.date) })))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes))
+  }, [notes])
+
   const filteredNotes = useMemo(() => {
     const filteredByTerm = notes.filter((note) => note.text.toLowerCase().includes(searchTerm.toLowerCase()) || note.title.toLowerCase().includes(searchTerm.toLowerCase()))
     const filteredByCategory = searchCategory ? filteredByTerm.filter((note) => note.category === searchCategory) : filteredByTerm
