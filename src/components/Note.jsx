@@ -1,3 +1,11 @@
+const categoriesColors = [
+  { value: "general", color: "#d3d3d3" }, // пастельный серый
+  { value: "personal", color: "#b2dfdb" }, // пастельный зелёный
+  { value: "work", color: "#bbdefb" }, // пастельный синий
+  { value: "ideas", color: "#b3e5fc" }, // пастельный голубой
+  { value: "study", color: "#fff9c4" }, // пастельный жёлтый
+]
+
 function Note({ note, id, deleteNote }) {
   const convertDate = (date) => {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -15,6 +23,8 @@ function Note({ note, id, deleteNote }) {
     return `${month} ${day} at ${hours}:${minutes} ${ampm}`
   }
 
+  const color = categoriesColors.find((elem) => elem.value === note.category).color
+
   const handleDelete = (e) => {
     e.stopPropagation()
     if (window.confirm("Are you shure you want to delete this note?")) {
@@ -23,7 +33,7 @@ function Note({ note, id, deleteNote }) {
   }
 
   return (
-    <div className="note">
+    <div className="note" style={{ backgroundColor: color }}>
       <div className="note-header">
         <div className="note-date">{convertDate(note.date)}</div>
         <div className="delete-note" onClick={(e) => handleDelete(e)}>
