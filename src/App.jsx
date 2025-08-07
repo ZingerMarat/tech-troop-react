@@ -2,6 +2,9 @@ import { useState, useEffect } from "react"
 import "./App.css"
 import InputForm from "./components/InputForm.jsx"
 import Notes from "./components/Notes.jsx"
+import Modal from "react-modal"
+
+Modal.setAppElement("#root")
 
 function App() {
   const [notes, setNotes] = useState([])
@@ -15,6 +18,10 @@ function App() {
     setNotes(afterDelete)
   }
 
+  const updateNote = (index, updatedNote) => {
+    setNotes((prevNotes) => prevNotes.map((note, i) => (i === index ? updatedNote : note)))
+  }
+
   // useEffect(() => {
   //   console.log("Notes changed:", notes)
   // }, [notes])
@@ -22,7 +29,7 @@ function App() {
   return (
     <div className="view-area">
       <InputForm addNote={addNote} />
-      <Notes notes={notes} deleteNote={deleteNote} />
+      <Notes notes={notes} deleteNote={deleteNote} updateNote={updateNote} />
     </div>
   )
 }

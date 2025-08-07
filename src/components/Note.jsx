@@ -15,7 +15,8 @@ function Note({ note, id, deleteNote }) {
     return `${month} ${day} at ${hours}:${minutes} ${ampm}`
   }
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.stopPropagation()
     if (window.confirm("Are you shure you want to delete this note?")) {
       deleteNote(id)
     }
@@ -25,7 +26,7 @@ function Note({ note, id, deleteNote }) {
     <div className="note">
       <div className="note-header">
         <div className="note-date">{convertDate(note.date)}</div>
-        <div className="delete-note" onClick={() => handleDelete()}>
+        <div className="delete-note" onClick={(e) => handleDelete(e)}>
           ✖
         </div>
       </div>
