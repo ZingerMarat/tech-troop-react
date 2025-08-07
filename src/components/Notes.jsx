@@ -1,10 +1,10 @@
 import Note from "./Note.jsx"
 
-function Notes({ notes }) {
+function Notes({ notes, deleteNote }) {
   return (
     <div className="all-notes">
       {notes.map((n, index) => (
-        <Note key={index} note={n} />
+        <Note key={index} id={index} note={n} deleteNote={deleteNote} />
       ))}
     </div>
   )

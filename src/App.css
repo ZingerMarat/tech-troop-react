@@ -48,14 +48,14 @@
 
 .all-notes {
   display: grid;
-  grid-template-columns: repeat(4, minmax(10rem, 1fr));
+  grid-template-columns: repeat(4, minmax(11rem, 1fr));
   gap: 1rem;
   padding: 1rem;
 }
 
 .note {
-  width: 10rem;
-  padding: 1rem;
+  width: 11rem;
+  padding: 0.5rem;
   margin: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -64,4 +64,34 @@
   word-wrap: break-word;
   white-space: pre-wrap;
   overflow-wrap: break-word;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-date {
+  align-self: center;
+  font-size: 0.7rem;
+  color: #959595;
+}
+
+.delete-note {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #888;
+  transition: color 0.2s ease;
+}
+
+.delete-note:hover {
+  color: red;
+}
+
+.note-text {
+  font-size: 1.2rem;
+  font-weight: 600;
 }
