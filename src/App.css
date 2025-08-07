@@ -39,6 +39,10 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.input-title {
+  width: 100%;
+}
+
 .input-area {
   width: 100%;
   min-height: 150px;
@@ -91,7 +95,13 @@
   color: red;
 }
 
-.note-text {
+.note-title {
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+.note-text {
+  font-size: 1rem;
+  font-weight: 500;
+  justify-self: left;
 }

@@ -16,7 +16,7 @@ function Note({ note, id, deleteNote }) {
   }
 
   const handleDelete = () => {
-    if (window.confirm("Are you sure you want to delete this note?")) {
+    if (window.confirm("Are you shure you want to delete this note?")) {
       deleteNote(id)
     }
   }
@@ -29,6 +29,7 @@ function Note({ note, id, deleteNote }) {
           ✖
         </div>
       </div>
+      {note.title ? <div className="note-title">{note.title}</div> : null}
       <div className="note-text">{note.text}</div>
     </div>
   )
