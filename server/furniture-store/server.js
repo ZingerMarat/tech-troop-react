@@ -18,7 +18,7 @@ const app = express()
 app.use(express.static(path.join(__dirname, "dist")))
 
 app.get("/", (req, res) => {
-  console.log("get")
+  res.sendFile(path.join(__dirname, "dist", "index.html"))
 })
 
 app.get("/priceCheck/:name", (req, res) => {
@@ -29,6 +29,36 @@ app.get("/priceCheck/:name", (req, res) => {
   }
 
   res.status(200).json({ price: item.price })
+})
+
+app.get("/buy/:name", (req, res) => {
+  const item = store.find((i) => i.name === req.params.name)
+
+  if (!item) {
+    return res.status(404).json({ error: "Item not found" })
+  }
+
+  if (item.inventory <= 0) {
+    return res.status(400).json({ error: "Out of stock" })
+  }
+
+  item.inventory--
+
+  res.status(200).json({
+    ...item,
+  })
+})
+
+app.get("/sale", (req, res) => {
+  if (req.query.admin === "true") {
+    for (let item of store) {
+      if (item.inventory > 10) {
+        item.price = item.price / 2
+      }
+    }
+  }
+
+  res.send(store)
 })
 
 app.listen(3000, () => {
