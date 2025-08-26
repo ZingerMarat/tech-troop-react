@@ -1,4 +1,10 @@
 import express from "express"
+import path from "path"
+import { fileURLToPath } from "url"
+import { dirname } from "path"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const store = [
   { name: "table", inventory: 3, price: 800 },
@@ -8,6 +14,8 @@ const store = [
 ]
 
 const app = express()
+
+app.use(express.static(path.join(__dirname, "dist")))
 
 app.get("/", (req, res) => {
   console.log("get")
